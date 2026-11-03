@@ -1,0 +1,20 @@
+const CFG={phone:"5541996019463",salao:"Nailux Esmalteria"};
+const wa=t=>`https://wa.me/${CFG.phone}?text=${encodeURIComponent(t)}`;
+document.querySelectorAll('.wa-link').forEach(a=>{if(a.getAttribute('href')==='#')a.href=wa('Olá! Gostaria de agendar um horário na '+CFG.salao+'.');a.target='_blank';a.rel='noopener'});
+document.querySelectorAll('.btn.wa-link[href^="#a"]').forEach(a=>{a.target='';a.removeAttribute('rel')});
+const hd=document.getElementById('hd');
+addEventListener('scroll',()=>hd.classList.toggle('on',scrollY>30),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
+document.querySelectorAll('.rv,.mask').forEach((el,i)=>{el.style.transitionDelay=(el.classList.contains('mask')?(i%4)*.12:0)+'s';io.observe(el)});
+const sv=document.getElementById('servico');
+document.querySelectorAll('.chip[data-s]').forEach(b=>b.onclick=()=>{sv.value=b.dataset.s;document.getElementById('agendar').scrollIntoView({behavior:'smooth'});setTimeout(()=>sv.focus({preventScroll:true}),700)});
+const d=document.getElementById('data');d.min=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+document.getElementById('fm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),v=k=>(f.get(k)||'').toString().trim(),err=document.getElementById('err');if(!v('nome')||v('tel').replace(/\D/g,'').length<10||!v('servico')||!v('data')||!v('periodo')){err.textContent='Preencha nome, WhatsApp com DDD, atendimento, data e período.';return}err.textContent='';const[y,m,dd]=v('data').split('-');const msg=`*AGENDAMENTO | ${CFG.salao}*\n\n*Nome:* ${v('nome')}\n*WhatsApp:* ${v('tel')}\n*Atendimento:* ${v('servico')}\n*Data desejada:* ${dd}/${m}/${y}\n*Período:* ${v('periodo')}\n*Cliente:* ${v('cliente')}\n*Preferência:* ${v('prof')||'Sem preferência'}\n*Observações:* ${v('obs')||'-'}`;window.open(wa(msg),'_blank','noopener')});
+document.querySelectorAll('.track,.row').forEach(r=>[...r.children].forEach(n=>{const c=n.cloneNode(true);c.setAttribute('aria-hidden','true');if(c.alt)c.alt='';r.appendChild(c)}));
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add('in');setTimeout(()=>t.style.transitionDelay='',1800);io2.unobserve(t)}}),{threshold:.12});
+document.querySelectorAll('[data-st]').forEach(p=>[...p.children].forEach((c,i)=>{c.classList.add('rv');c.style.transitionDelay=(i*.12)+'s';io2.observe(c)}));
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,pars=[...document.querySelectorAll('[data-par]')],vd=document.querySelector('.vid video'),hw=document.querySelector('.hero .wrap'),pg=document.getElementById('pg');
+if(rm&&vd)vd.pause();
+function onS(){const h=innerHeight,m=document.documentElement.scrollHeight-h;pg.style.transform=`scaleX(${m>0?scrollY/m:0})`;if(rm)return;if(scrollY<h&&vd){const f=scrollY/h;vd.style.transform=`translateY(${scrollY*.12}px) scale(${1.06+f*.08})`;hw.style.opacity=Math.max(0,1-f*1.25);hw.style.transform=`translateY(${-f*50}px)`}pars.forEach(i=>{const r=i.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>h)return;i.style.transform=`translateY(${(r.top+r.height/2-h/2)/h*-9}%)`})}
+addEventListener('scroll',onS,{passive:true});onS();
