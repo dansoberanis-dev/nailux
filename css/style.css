@@ -281,3 +281,33 @@ main>section.method-showcase{
   #agendar .grid2{gap:1rem}
   #agendar .arch{display:none}
 }
+
+/* Fallback: fotos dos cards de atendimento sempre visíveis, mesmo sem JS */
+.sc .ph.mask{clip-path:none}
+.sc .ph img{transform:scale(1)}
+.sc .ph.in img{transform:scale(1)}
+.sc:hover .ph img{transform:scale(1.06)}
+.svcs .sc{opacity:1}
+
+
+/* Fotos dos cards de Atendimento Nailux: visíveis sem depender do JavaScript ou do lazy-loading. */
+#servicos .card-photo{
+  display:block;
+  width:100%;
+  min-height:0;
+  clip-path:none !important;
+  opacity:1 !important;
+  visibility:visible !important;
+  overflow:hidden;
+}
+#servicos .card-photo img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:220px;
+  object-fit:cover;
+  transform:none !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+@media(max-width:559px){#servicos .card-photo img{min-height:300px}}
