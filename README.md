@@ -22,6 +22,10 @@ Acesse `http://localhost:5432`. O servidor deve ser iniciado na pasta que conté
 
 Não requer `npm install` nem etapa de build.
 
+## Tipografia do hero (prévia)
+
+O hero usa **Milesdane Trial** para avaliação visual. A versão do DaFont é licenciada apenas para uso pessoal; não faça commit, publicação ou apresentação comercial com essa fonte antes de adquirir a licença comercial. Antes de publicar para a Nailux, substitua pelo arquivo coberto pela licença comercial ou use uma alternativa comercialmente liberada. Fonte de referência: https://www.dafont.com/milesdane.font
+
 ## GitHub e Vercel
 
 O site pode ser mantido em um repositório GitHub e implantado na Vercel como site estático. Na Vercel, use o preset **Other** e deixe a pasta raiz do projeto como diretório de publicação. Não publique até a aprovação final da responsável pelo negócio.
