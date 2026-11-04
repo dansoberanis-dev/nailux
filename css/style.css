@@ -274,3 +274,10 @@ main>section.method-showcase{
     line-height:1.08;
   }
 }
+.sc .ph img[src*="nailux-seu-atendimento"]{object-position:50% 30%}
+
+/* Mobile: remove a foto ornamental sob o CTA para aproximar o formulário */
+@media(max-width:600px){
+  #agendar .grid2{gap:1rem}
+  #agendar .arch{display:none}
+}
